@@ -1,5 +1,4 @@
 import logging
-import re
 import string
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
@@ -34,28 +33,36 @@ Output:
 
 doc = "wrw blf hvv ozhg mrtsg'h vkrhlwv?"
 doc2 = "Yvzs! I xzm'g yvorvev Lzmxv olhg srh qly zg gsv xlolmb!!"
+doc3 = 'vmxibkgrlm'
 
 
-
-a_z = string.ascii_lowercase
-a_z_list = list(a_z)
-z_a_list = list(a_z)
-print(a_z_list)
-z_a_list.reverse()
-print(a_z_list)
-
-
-def decoder(text):
+def solution(s):
+    a_z = string.ascii_lowercase
+    # The lowercase alphabet, in list form.
+    a_z_list = list(a_z)
+    # Another one that will be reversed. reverse() function changes the original instead of producing a new list.
+    z_a_list = list(a_z)
+    z_a_list.reverse()
     decoded_list = []
-    for i in text:
+    # Iterating through the input text, one character at a time.
+    for i in s:
+        # If character is in lowercase alphabet, take the index and use it to change the character to its counterpart
+        # in the reversed alphabet.
         if i in a_z_list:
             index = a_z_list.index(i)
             i = z_a_list[index]
             decoded_list.append(i)
+        # If any other character than lowercase alphabet, do nothing and add to the new list.
         else:
             decoded_list.append(i)
-    print(''.join(decoded_list))
+    # From list back to string.
+    original_message = ''.join(decoded_list)
+    print(original_message)
+    return original_message
 
 
-decoder(doc)
-decoder(doc2 )
+logging.debug('Start of function.')
+solution(doc)
+logging.debug('End of function.')
+solution(doc2)
+solution(doc3)
