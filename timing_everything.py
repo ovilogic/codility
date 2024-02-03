@@ -12,6 +12,7 @@ def timer_decorator(f):
     print(float((et - st) / 1000000000))
     return f
 
+
 list_ = []
 for i in range(100000):
     list_.append(i)

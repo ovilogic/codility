@@ -1,4 +1,6 @@
-''' A non-empty array A consisting of N integers is given. The array contains an odd number of elements, and each element of the array can be paired with another element that has the same value, except for one element that is left unpaired.
+''' A non-empty array A consisting of N integers is given. The array contains an odd number of elements,
+and each element of the array can be paired with another element that has the same value,
+except for one element that is left unpaired.
 
 For example, in array A such that:
 
@@ -35,14 +37,15 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(message)s')
 
 
 def timer_decorator(f):
-    st = time.perf_counter_ns()
-    # logging.debug('start')
 
-    # logging.debug('end')
-    et = time.perf_counter_ns()
-    print(et, st, sep='\n')
-    print(float((et - st) / 1000000000))
-    return f
+    def rapper(*args):
+        st = time.perf_counter_ns()
+        f(*args)
+        et = time.perf_counter_ns()
+        print(et, st, sep='\n')
+        print(float((et - st) / 1000000000))
+
+    return rapper
 
 #
 # @timer_decorator
@@ -109,10 +112,25 @@ def timer_decorator(f):
 def dict_shot(list_):
 
     for i in list_:
-        i.count()
-    else:
-        hash[i] += 1
-    print(hash)
+        cooly_scientific = list_.count(i)
+        if cooly_scientific % 2 == 0:
+            continue
+        else:
+            print(f'{i} is the culprit')
+            return i
+
+
+def linear(list_):
+    list_.sort()
+    print(list_)
+    while True:
+        print(A[0], A[1])
+        if list_[0] == list_[1]:
+            list_.remove(list_[0])
+            list_.remove(list_[0])
+        else:
+            print(list_[0])
+            return list_[0]
 
 
 A = []
@@ -131,4 +149,5 @@ print(A)
 
 # A = [3]
 
-print(dict_shot(A))
+# print(dict_shot(A))
+linear(A)
